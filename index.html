@@ -69,24 +69,20 @@
         <form action="app.js">
 
 
+
+
             <div class="content">
-                <input type="text" id="firstName" placeholder=" First Name ">
+                <input type="text" name="" id="title" placeholder=" Title">
+            </div>
+
+
+
+            <div class="content">
+                <input type="text" id="desc" placeholder=" Write A Message">
             </div>
 
             <div class="content">
-                <input type="text" name="" id="lastName" placeholder=" Last Name">
-            </div>
-
-            <div class="content">
-                <input type="email" id="email" placeholder=" Email ID">
-            </div>
-
-            <div class="content">
-                <input type="text" id="message" placeholder=" Write A Message">
-            </div>
-
-            <div class="content">
-                <button class="btn btn-success" type="button">Add To List</button>
+                <button id="add" class="btn btn-success" type="button">Add To List</button>
             </div>
 
             <div class="content">
@@ -104,21 +100,22 @@
             <table>
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Action</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Task</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Option</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tableBody">
                     <tr>
-                        <td>1</td>
-                        <td>SSSJ</td>
-                        <td>913547589</td>
-                        <td>SyedShoaibShahJalani</td>
+                        <td scope="row">1</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
                     </tr>
                 </tbody>
             </table>
+
         </div>
 
 
@@ -179,12 +176,61 @@
     <script src="navbar.js"></script>
 
     <script>
+
         function clearall() {
 
             if (confirm("are you sure you want to delete !")) {
                 console.log("Its working ")
             }
         }
+
+        add = document.getElementById("add");
+
+        add.addEventListener("click", (e) => {
+
+            title = document.getElementById("title").value
+            desc = document.getElementById("desc").value
+            console.log("chal rahy hain");
+            if (localStorage.getItem('itemjson') == null) {
+                itemJsonArray = [];
+
+                itemJsonArray.push([title, desc]);
+
+                localStorage.setItem("itemjson", JSON.stringify(itemJsonArray))
+            } else {
+
+                itemJsonArraystr = localStorage.getItem("itemjson");
+
+                itemJsonArray = JSON.parse(itemJsonArraystr)
+
+                itemJsonArray.push([title, desc]);
+
+                localStorage.setItem("itemjson", JSON.stringify(itemJsonArray))
+
+
+            }
+        });
+
+        // populate data
+
+        tableBody = document.getElementById("tableBody");
+        str = "";
+        itemJsonArray.forEach((element, index) => {
+
+            str += ''
+
+        });
+        tableBody.innerHTML = str;
+
+        add = document.getElementById("add");
+        add.addEventListener("click", (e) => {
+
+        });
+
+
+
+
+
 
     </script>
 
